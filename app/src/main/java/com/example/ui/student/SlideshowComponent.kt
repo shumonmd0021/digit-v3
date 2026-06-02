@@ -112,35 +112,37 @@ fun DailyActivitySlideshow(onNavigateToLesson: () -> Unit) {
 
 @Composable
 fun DidYouKnowCard() {
-    SlideshowCardBase {
-        Icon(Icons.Default.Lightbulb, contentDescription = null, tint = Color(0xFFFFD700), modifier = Modifier.size(32.dp))
-        Spacer(modifier = Modifier.height(8.dp))
-        Text("আজকের তথ্য / Did You Know?", fontSize = 12.sp, color = Color.White.copy(alpha = 0.8f), letterSpacing = 1.sp)
+    SlideshowCardBase(
+        gradientBrush = Brush.linearGradient(listOf(Color(0xFFFF8008), Color(0xFFFFC837)))
+    ) {
+        Icon(Icons.Default.Lightbulb, contentDescription = null, tint = Color.White, modifier = Modifier.size(36.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+        Text("আজকের তথ্য / Did You Know?", fontSize = 12.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
         Spacer(modifier = Modifier.height(24.dp))
         Text("শুক্র গ্রহের এক দিন পৃথিবীর এক বছরের চেয়ে বড়!", fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, lineHeight = 28.sp, color = Color.White)
         Spacer(modifier = Modifier.height(12.dp))
-        Text("A day on Venus is longer than a year on Earth!", fontSize = 14.sp, color = Color.White.copy(alpha = 0.8f), textAlign = TextAlign.Center)
+        Text("A day on Venus is longer than a year on Earth!", fontSize = 14.sp, color = Color.White.copy(alpha = 0.9f), textAlign = TextAlign.Center)
     }
 }
 
 @Composable
-fun SlideshowCardBase(content: @Composable ColumnScope.() -> Unit) {
+fun SlideshowCardBase(
+    gradientBrush: Brush = Brush.linearGradient(colors = listOf(Primary, PrimaryContainer)),
+    content: @Composable ColumnScope.() -> Unit
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .height(280.dp),
-        shape = RoundedCornerShape(24.dp),
-        shadowElevation = 8.dp,
-        color = Color.Transparent
+        shape = RoundedCornerShape(32.dp),
+        shadowElevation = 0.dp,
+        color = Color.Transparent,
+        border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceContainerHighest)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(Color(0xFF3C3F73), Color(0xFF54578C)) // Primary to PrimaryContainer
-                    )
-                )
+                .background(brush = gradientBrush)
         ) {
             Column(
                 modifier = Modifier.padding(24.dp).fillMaxSize(),
@@ -169,16 +171,17 @@ fun FlashcardOfTheDay() {
                 rotationY = rotation
                 cameraDistance = 12f * density
             },
-        shape = RoundedCornerShape(24.dp),
-        shadowElevation = 8.dp,
-        color = Color.Transparent
+        shape = RoundedCornerShape(32.dp),
+        shadowElevation = 0.dp,
+        color = Color.Transparent,
+        border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceContainerHighest)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
                     brush = Brush.linearGradient(
-                        colors = listOf(Color(0xFF3C3F73), Color(0xFF54578C))
+                        colors = listOf(Color(0xFF667EEA), Color(0xFF764BA2))
                     )
                 )
         ) {
@@ -190,14 +193,15 @@ fun FlashcardOfTheDay() {
                 ) {
                     Box(modifier = Modifier.fillMaxWidth()) {
                         Column(modifier = Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("FLASHCARD OF THE DAY", fontSize = 10.sp, letterSpacing = 2.sp, color = Color.White.copy(alpha = 0.7f))
+                            Text("FLASHCARD OF THE DAY", fontSize = 10.sp, letterSpacing = 2.sp, color = Color.White.copy(alpha = 0.9f))
                         }
                     }
                     
                     Spacer(modifier = Modifier.weight(1f))
                     
-                    Text("মহাকাশ (Mohakash)", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = Color.White)
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Text("মহাকাশ", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.White, textAlign = TextAlign.Center)
+                    Text("(Mohakash)", fontSize = 20.sp, fontWeight = FontWeight.Medium, color = Color.White.copy(alpha = 0.9f), textAlign = TextAlign.Center)
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text("Space / Universe", fontSize = 16.sp, color = Color.White.copy(alpha = 0.8f))
                     
                     Spacer(modifier = Modifier.weight(1f))
@@ -260,11 +264,13 @@ fun DailyChallengeCard() {
     val options = listOf("A. ৬টি", "B. ৭টি", "C. ৮টি", "D. ৯টি")
     val correctOption = 2
 
-    SlideshowCardBase {
-        Text("DAILY CHALLENGE / আজকের কুইজ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.7f), letterSpacing = 1.sp)
+    SlideshowCardBase(
+        gradientBrush = Brush.linearGradient(listOf(Color(0xFF00B4DB), Color(0xFF0083B0)))
+    ) {
+        Text("DAILY CHALLENGE / আজকের কুইজ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
         Spacer(modifier = Modifier.height(16.dp))
-        Text("সৌরজগতে কয়টি গ্রহ আছে?", fontSize = 18.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-        Text("How many planets are in the solar system?", fontSize = 14.sp, color = Color.White.copy(alpha = 0.8f), textAlign = TextAlign.Center)
+        Text("সৌরজগতে কয়টি গ্রহ আছে?", fontSize = 18.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, color = Color.White)
+        Text("How many planets are in the solar system?", fontSize = 14.sp, color = Color.White.copy(alpha = 0.9f), textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
         
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -286,7 +292,7 @@ fun DailyChallengeCard() {
         ) {
             Column {
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(if (answered == true) "সঠিক উত্তর! (Correct!)" else "ভুল উত্তর! (Incorrect!)", color = if (answered == true) Color(0xFF4CAF50) else Color(0xFFFF5252), fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                Text(if (answered == true) "সঠিক উত্তর! (Correct!)" else "ভুল উত্তর! (Incorrect!)", color = if (answered == true) Color(0xFFC8E6C9) else Color(0xFFFFCDD2), fontWeight = FontWeight.Bold, fontSize = 14.sp)
             }
         }
     }
@@ -321,21 +327,23 @@ fun ChallengeOption(text: String, modifier: Modifier, answered: Boolean?, isSele
 
 @Composable
 fun WordOfTheDayCard() {
-    SlideshowCardBase {
-        Text("ENGLISH WORD OF THE DAY / ইংরেজি শব্দ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.7f), letterSpacing = 1.sp)
+    SlideshowCardBase(
+        gradientBrush = Brush.linearGradient(listOf(Color(0xFF8E2DE2), Color(0xFF4A00E0)))
+    ) {
+        Text("ENGLISH WORD OF THE DAY / ইংরেজি শব্দ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Learn", fontSize = 32.sp, fontWeight = FontWeight.Bold)
-        Text("শেখা • Verb", fontSize = 16.sp, color = Color.White.copy(alpha = 0.8f))
+        Text("Learn", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        Text("শেখা • Verb", fontSize = 16.sp, color = Color.White.copy(alpha = 0.9f))
         Spacer(modifier = Modifier.height(24.dp))
         Surface(
-            color = Color.Black.copy(alpha = 0.15f),
+            color = Color.Black.copy(alpha = 0.2f),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("I want to learn something new every day.", fontSize = 14.sp, fontWeight = FontWeight.Medium)
+                Text("I want to learn something new every day.", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = Color.White)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text("আমি প্রতিদিন নতুন কিছু শিখতে চাই।", fontSize = 12.sp, color = Color.White.copy(alpha = 0.8f))
+                Text("আমি প্রতিদিন নতুন কিছু শিখতে চাই।", fontSize = 12.sp, color = Color.White.copy(alpha = 0.9f))
             }
         }
     }
@@ -343,27 +351,29 @@ fun WordOfTheDayCard() {
 
 @Composable
 fun TodaysLessonCard(onNavigateToLesson: () -> Unit) {
-    SlideshowCardBase {
-        Text("TODAY'S LESSON / আজকের পাঠ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.7f), letterSpacing = 1.sp)
+    SlideshowCardBase(
+        gradientBrush = Brush.linearGradient(listOf(Color(0xFF11998E), Color(0xFF38EF7D)))
+    ) {
+        Text("TODAY'S LESSON / আজকের পাঠ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
         Spacer(modifier = Modifier.height(16.dp))
         
         Surface(
             modifier = Modifier.size(64.dp),
             shape = RoundedCornerShape(16.dp),
-            color = Color.White.copy(alpha = 0.2f)
+            color = Color.White.copy(alpha = 0.25f)
         ) {
             Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.padding(16.dp), tint = Color.White)
         }
         
         Spacer(modifier = Modifier.height(8.dp))
-        Text("বাংলা ব্যাকরণ", fontSize = 14.sp, color = Color.White.copy(alpha = 0.8f))
-        Text("কারক ও বিভক্তি", fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-        Text("45 Mins", fontSize = 12.sp, color = Color.White.copy(alpha = 0.7f))
+        Text("বাংলা ব্যাকরণ", fontSize = 14.sp, color = Color.White.copy(alpha = 0.9f))
+        Text("কারক ও বিভক্তি", fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, color = Color.White)
+        Text("45 Mins", fontSize = 12.sp, color = Color.White.copy(alpha = 0.9f))
         
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = onNavigateToLesson,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color(0xFF5C6399)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color(0xFF11998E)),
             shape = RoundedCornerShape(16.dp)
         ) {
             Text("Start Learning (পড়া শুরু করুন)", fontWeight = FontWeight.Bold)
