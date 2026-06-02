@@ -32,7 +32,7 @@ fun RoleSelectionScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.mipmap.ic_launcher),
                 contentDescription = "App Logo",
                 modifier = Modifier
                     .size(100.dp)
@@ -41,15 +41,10 @@ fun RoleSelectionScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "শিক্ষা",
+                text = "Digit",
                 fontSize = 48.sp,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            Text(
-                text = "Shikkha Academy",
-                fontSize = 20.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(bottom = 48.dp)
             )
 
