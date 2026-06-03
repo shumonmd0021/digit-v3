@@ -35,12 +35,12 @@ fun DigitTabHeader(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 28.dp, bottom = 12.dp),
+            .padding(top = 36.dp, bottom = 12.dp),
         contentAlignment = Alignment.Center
     ) {
         Surface(
             shape = RoundedCornerShape(percent = 50),
-            color = pillBg.copy(alpha = 0.8f),
+            color = pillBg.copy(alpha = 0.95f),
             shadowElevation = if (isDark) 0.dp else 4.dp,
             border = if (isDark) androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.05f)) else null,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)

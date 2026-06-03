@@ -86,9 +86,12 @@ fun StudentLessonsScreen(
         containerColor = LessonScreenBg
     ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier.padding(paddingValues).fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(24.dp),
-            contentPadding = PaddingValues(bottom = 24.dp)
+            contentPadding = PaddingValues(
+                top = paddingValues.calculateTopPadding(),
+                bottom = paddingValues.calculateBottomPadding() + 24.dp
+            )
         ) {
             item {
                 Column(modifier = Modifier.padding(horizontal = 24.dp)) {

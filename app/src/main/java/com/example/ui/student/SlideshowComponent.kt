@@ -68,7 +68,7 @@ fun DailyActivitySlideshow(onNavigateToLesson: () -> Unit) {
                     1 -> FlashcardOfTheDay()
                     2 -> DailyChallengeCard()
                     3 -> WordOfTheDayCard()
-                    4 -> TodaysLessonCard(onNavigateToLesson)
+                    4 -> ReviewPreviousLessonCard(onNavigateToLesson)
                 }
             }
         }
@@ -133,7 +133,7 @@ fun SlideshowCardBase(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(280.dp),
+            .height(260.dp),
         shape = RoundedCornerShape(32.dp),
         shadowElevation = 0.dp,
         color = Color.Transparent,
@@ -145,7 +145,7 @@ fun SlideshowCardBase(
                 .background(brush = gradientBrush)
         ) {
             Column(
-                modifier = Modifier.padding(24.dp).fillMaxSize(),
+                modifier = Modifier.padding(16.dp).fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 content = content
@@ -166,7 +166,7 @@ fun FlashcardOfTheDay() {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(280.dp)
+            .height(260.dp)
             .graphicsLayer {
                 rotationY = rotation
                 cameraDistance = 12f * density
@@ -212,8 +212,8 @@ fun FlashcardOfTheDay() {
                             containerColor = Color(0x19FFFFFF), // white/10
                             contentColor = Color.White
                         ),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x1AFFFFFF)),
-                        shape = RoundedCornerShape(24.dp),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x33FFFFFF)),
+                        shape = RoundedCornerShape(percent = 50),
                         modifier = Modifier.height(48.dp)
                     ) {
                         Icon(Icons.Default.Autorenew, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -243,8 +243,9 @@ fun FlashcardOfTheDay() {
                             containerColor = Color(0x19FFFFFF),
                             contentColor = Color.White
                         ),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x1AFFFFFF)),
-                        shape = RoundedCornerShape(16.dp)
+                        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0x33FFFFFF)),
+                        shape = RoundedCornerShape(percent = 50),
+                        modifier = Modifier.height(48.dp)
                     ) {
                         Icon(Icons.Default.Autorenew, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(8.dp))
@@ -303,7 +304,7 @@ fun ChallengeOption(text: String, modifier: Modifier, answered: Boolean?, isSele
     val targetBgColor = when {
         answered != null && isCorrect -> Color(0xFF4CAF50) // Correct
         answered != null && isSelected && !isCorrect -> Color(0xFFFF5252) // Wrong selected
-        else -> Color.White.copy(alpha = 0.2f)
+        else -> Color.White.copy(alpha = 0.15f)
     }
     
     val bgColor by androidx.compose.animation.animateColorAsState(
@@ -313,14 +314,15 @@ fun ChallengeOption(text: String, modifier: Modifier, answered: Boolean?, isSele
     )
     
     Surface(
-        modifier = modifier.height(44.dp),
+        modifier = modifier.height(48.dp),
         onClick = onClick,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(percent = 50),
         color = bgColor,
-        contentColor = Color.White
+        contentColor = Color.White,
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.2f))
     ) {
         Box(contentAlignment = Alignment.Center) {
-            Text(text, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+            Text(text, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
         }
     }
 }
@@ -336,11 +338,12 @@ fun WordOfTheDayCard() {
         Text("শেখা • Verb", fontSize = 16.sp, color = Color.White.copy(alpha = 0.9f))
         Spacer(modifier = Modifier.height(24.dp))
         Surface(
-            color = Color.Black.copy(alpha = 0.2f),
-            shape = RoundedCornerShape(12.dp),
+            color = Color.White.copy(alpha = 0.1f),
+            shape = RoundedCornerShape(24.dp),
+            border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.2f)),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier.padding(20.dp)) {
                 Text("I want to learn something new every day.", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = Color.White)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text("আমি প্রতিদিন নতুন কিছু শিখতে চাই।", fontSize = 12.sp, color = Color.White.copy(alpha = 0.9f))
@@ -350,11 +353,11 @@ fun WordOfTheDayCard() {
 }
 
 @Composable
-fun TodaysLessonCard(onNavigateToLesson: () -> Unit) {
+fun ReviewPreviousLessonCard(onNavigateToLesson: () -> Unit) {
     SlideshowCardBase(
         gradientBrush = Brush.linearGradient(listOf(Color(0xFF11998E), Color(0xFF38EF7D)))
     ) {
-        Text("TODAY'S LESSON / আজকের পাঠ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
+        Text("REVIEW PREVIOUS LESSON / পূর্ববর্তী পাঠ", fontSize = 10.sp, color = Color.White.copy(alpha = 0.9f), letterSpacing = 1.sp)
         Spacer(modifier = Modifier.height(16.dp))
         
         Surface(
@@ -362,21 +365,21 @@ fun TodaysLessonCard(onNavigateToLesson: () -> Unit) {
             shape = RoundedCornerShape(16.dp),
             color = Color.White.copy(alpha = 0.25f)
         ) {
-            Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.padding(16.dp), tint = Color.White)
+            Icon(Icons.Default.Autorenew, contentDescription = null, modifier = Modifier.padding(16.dp), tint = Color.White)
         }
         
         Spacer(modifier = Modifier.height(8.dp))
         Text("বাংলা ব্যাকরণ", fontSize = 14.sp, color = Color.White.copy(alpha = 0.9f))
-        Text("কারক ও বিভক্তি", fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, color = Color.White)
-        Text("45 Mins", fontSize = 12.sp, color = Color.White.copy(alpha = 0.9f))
+        Text("কারক ও বিভক্তি - পর্ব ১", fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, color = Color.White)
         
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = onNavigateToLesson,
             colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color(0xFF11998E)),
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(percent = 50),
+            modifier = Modifier.fillMaxWidth().height(48.dp)
         ) {
-            Text("Start Learning (পড়া শুরু করুন)", fontWeight = FontWeight.Bold)
+            Text("Review Now (পুনরায় পড়ুন)", fontWeight = FontWeight.Bold)
         }
     }
 }

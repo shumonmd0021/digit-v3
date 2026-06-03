@@ -91,8 +91,11 @@ fun ProgressTrackerScreen(
         containerColor = ProgressScreenBg
     ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier.padding(paddingValues).fillMaxSize(), 
-            contentPadding = PaddingValues(bottom = 24.dp)
+            modifier = Modifier.fillMaxSize(), 
+            contentPadding = PaddingValues(
+                top = paddingValues.calculateTopPadding(),
+                bottom = paddingValues.calculateBottomPadding() + 24.dp
+            )
         ) {
             item {
                 HeroProfileSection()
