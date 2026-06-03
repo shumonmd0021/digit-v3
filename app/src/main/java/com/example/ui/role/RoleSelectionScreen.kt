@@ -88,7 +88,9 @@ fun RoleSelectionScreen(
                     Image(
                         painter = painterResource(id = R.drawable.ic_launcher_foreground),
                         contentDescription = "Digit Logo",
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(10.dp))
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(

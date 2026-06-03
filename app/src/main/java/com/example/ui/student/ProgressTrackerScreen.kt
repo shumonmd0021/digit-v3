@@ -23,6 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.style.TextAlign
+import com.example.ui.components.DigitTabHeader
+import androidx.compose.material.icons.outlined.Notifications
 
 private val ProgressScreenBg: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFF191C1E) else Color(0xFFF8F9FA)
 private val ProgressCardBg: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFF282A2D) else Color(0xFFFFFFFF)
@@ -50,27 +52,31 @@ fun ProgressTrackerScreen(
 ) {
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Monthly Progress", color = ProgressBlueText, fontWeight = FontWeight.Bold, fontSize = 20.sp) },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) { Icon(Icons.Default.Menu, contentDescription = "Menu", tint = ProgressSecondaryText) }
-                },
+            DigitTabHeader(
                 actions = {
-                    Box(
-                        modifier = Modifier
-                            .padding(end = 16.dp)
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(ProgressLavender)
-                            .padding(2.dp)
-                            .clip(CircleShape)
-                            .background(Color.White),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("AM", color = ProgressBlueText, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                    Box(contentAlignment = Alignment.TopEnd) {
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = ProgressPrimaryText, modifier = Modifier.size(32.dp))
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 8.dp, end = 8.dp)
+                                .size(12.dp)
+                                .background(Color.Red, CircleShape)
+                        )
                     }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = ProgressScreenBg)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape,
+                        color = ProgressLavender,
+                        border = androidx.compose.foundation.BorderStroke(2.dp, ProgressTeal.copy(alpha = 0.5f))
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Text("AM", color = ProgressBlueText, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        }
+                    }
+                }
             )
         },
         bottomBar = {

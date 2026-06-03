@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import com.example.ui.components.DigitTabHeader
+import androidx.compose.material.icons.outlined.Notifications
 
 val Primary: Color
     @Composable get() = if (isSystemInDarkTheme()) Color(0xFFBFC2FE) else Color(0xFF3C3F73)
@@ -60,45 +62,38 @@ fun StudentDashboardScreen(
     Scaffold(
         containerColor = SurfaceBg,
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = SurfaceBg.copy(alpha = 0.95f)),
-                title = {},
-                navigationIcon = {
+            DigitTabHeader(
+                actions = {
                     Row(
-                        modifier = Modifier.padding(start = 16.dp),
+                        modifier = Modifier
+                            .background(SurfaceContainerLow, CircleShape)
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Surface(
-                            modifier = Modifier.size(40.dp),
-                            shape = CircleShape,
-                            color = PrimaryContainer,
-                            border = androidx.compose.foundation.BorderStroke(2.dp, Primary.copy(alpha = 0.2f))
-                        ) {
-                            Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.padding(8.dp), tint = Color.White)
-                        }
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
-                            Text("আসালামু আলাইকুম", fontSize = 10.sp, color = OnSurfaceVariant)
-                            Text("রাহিম", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Primary)
-                        }
+                        Icon(Icons.Default.LocalFireDepartment, contentDescription = null, tint = AchievementOrange, modifier = Modifier.size(18.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("৫", fontWeight = FontWeight.Bold, color = AchievementOrange, fontSize = 14.sp)
                     }
-                },
-                actions = {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 16.dp)) {
-                        Row(
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Box(contentAlignment = Alignment.TopEnd) {
+                        IconButton(onClick = { /* TODO */ }, modifier = Modifier.size(50.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = Primary, modifier = Modifier.size(32.dp))
+                        }
+                        Box(
                             modifier = Modifier
-                                .background(SurfaceContainerLow, CircleShape)
-                                .padding(horizontal = 12.dp, vertical = 6.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(Icons.Default.LocalFireDepartment, contentDescription = null, tint = AchievementOrange, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text("৫", fontWeight = FontWeight.Bold, color = AchievementOrange, fontSize = 14.sp)
-                        }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        IconButton(onClick = { /* TODO */ }) {
-                            Icon(Icons.Default.Notifications, contentDescription = "Notifications", tint = Primary)
-                        }
+                                .padding(top = 8.dp, end = 8.dp)
+                                .size(12.dp)
+                                .background(Color.Red, CircleShape)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape,
+                        color = PrimaryContainer,
+                        border = androidx.compose.foundation.BorderStroke(2.dp, Color(0xFF00695C).copy(alpha = 0.5f))
+                    ) {
+                        Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.padding(10.dp), tint = Color.White)
                     }
                 }
             )

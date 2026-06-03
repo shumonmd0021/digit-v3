@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import com.example.ui.components.DigitTabHeader
+import androidx.compose.material.icons.outlined.Notifications
 
 internal val NavyBlue: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFFBFC2FE) else Color(0xFF54578C)
 private val DeepNavy: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFF3C3F73) else Color(0xFF3B3E66)
@@ -49,34 +51,29 @@ fun StudentQuizzesScreen(
     Scaffold(
         containerColor = ScreenBg,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        "Quiz Hub",
-                        color = NavyBlue,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Default.Menu, contentDescription = "Menu", tint = NavyBlue)
-                    }
-                },
+            DigitTabHeader(
                 actions = {
-                    Box(
-                        modifier = Modifier
-                            .padding(end = 16.dp)
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .background(NavyBlue),
-                        contentAlignment = Alignment.Center
-                    ) {
-                         Icon(Icons.Default.Person, contentDescription = "Avatar", tint = Color.White, modifier = Modifier.size(24.dp))
+                    Box(contentAlignment = Alignment.TopEnd) {
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = NavyBlue, modifier = Modifier.size(32.dp))
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 8.dp, end = 8.dp)
+                                .size(12.dp)
+                                .background(Color.Red, CircleShape)
+                        )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = ScreenBg)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape,
+                        color = NavyBlue,
+                        border = androidx.compose.foundation.BorderStroke(2.dp, TealGreen.copy(alpha = 0.5f))
+                    ) {
+                         Icon(Icons.Default.Person, contentDescription = "Avatar", tint = Color.White, modifier = Modifier.padding(10.dp))
+                    }
+                }
             )
         },
         bottomBar = {

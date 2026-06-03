@@ -23,6 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ui.components.DigitTabHeader
+import androidx.compose.material.icons.outlined.Notifications
 
 private val LessonScreenBg: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFF191C1E) else Color(0xFFF8F9FA)
 private val LessonCardBg: Color @Composable get() = if (isSystemInDarkTheme()) Color(0xFF282A2D) else Color(0xFFFFFFFF)
@@ -45,37 +47,32 @@ fun StudentLessonsScreen(
 ) {
     Scaffold(
         topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 16.dp)
-                    .padding(top = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .background(LessonLavender),
-                        contentAlignment = Alignment.Center
+            DigitTabHeader(
+                actions = {
+                    Box(contentAlignment = Alignment.TopEnd) {
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = LessonPrimaryText, modifier = Modifier.size(32.dp))
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 8.dp, end = 8.dp)
+                                .size(12.dp)
+                                .background(Color.Red, CircleShape)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape,
+                        color = LessonLavender,
+                        border = androidx.compose.foundation.BorderStroke(2.dp, LessonTeal.copy(alpha = 0.5f))
                     ) {
-                        Text("AM", color = LessonBlueText, fontWeight = FontWeight.Bold)
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Column {
-                        Text("Lessons", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = LessonBlueText)
-                        Text("পাঠসমূহ", fontSize = 14.sp, color = LessonSecondaryText)
+                        Box(contentAlignment = Alignment.Center) {
+                            Text("AM", color = LessonBlueText, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        }
                     }
                 }
-                IconButton(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier.background(Color.Black.copy(alpha = 0.05f), CircleShape)
-                ) {
-                    Icon(Icons.Default.NotificationsNone, contentDescription = "Notifications", tint = LessonBlueText)
-                }
-            }
+            )
         },
         bottomBar = {
             StudentBottomNavBar(

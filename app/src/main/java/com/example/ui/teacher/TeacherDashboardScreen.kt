@@ -22,6 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.theme.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.background
+
+import com.example.ui.components.DigitTabHeader
+import androidx.compose.material.icons.outlined.Notifications
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,6 +37,32 @@ fun TeacherDashboardScreen(
     onNavigateToAnnouncement: () -> Unit
 ) {
     Scaffold(
+        topBar = {
+            DigitTabHeader(
+                actions = {
+                    Box(contentAlignment = Alignment.TopEnd) {
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(32.dp))
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 8.dp, end = 8.dp)
+                                .size(12.dp)
+                                .background(Color.Red, CircleShape)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape,
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        border = androidx.compose.foundation.BorderStroke(2.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.5f))
+                    ) {
+                        Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.padding(10.dp), tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                    }
+                }
+            )
+        },
         bottomBar = {
             NavigationBar(containerColor = MaterialTheme.colorScheme.surfaceContainerLowest) {
                 NavigationBarItem(selected = true, onClick = {}, icon = { Icon(Icons.Default.Home, null) }, label = { Text("Home") })
@@ -48,35 +79,8 @@ fun TeacherDashboardScreen(
                 .padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            item { 
-                Surface(
-                    color = MaterialTheme.colorScheme.surfaceContainer,
-                    shape = RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp)
-                ) {
-                    Column(modifier = Modifier.padding(24.dp).padding(top = 24.dp).fillMaxWidth()) {
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                            Surface(
-                                modifier = Modifier.size(56.dp),
-                                shape = CircleShape,
-                                color = MaterialTheme.colorScheme.primaryContainer
-                            ) {
-                                Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.padding(12.dp), tint = MaterialTheme.colorScheme.onPrimaryContainer)
-                            }
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text("স্বাগতম", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                Text("Teacher Portal", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-                            }
-                            IconButton(onClick = {}) {
-                                Icon(Icons.Default.Notifications, contentDescription = "Notifications", tint = MaterialTheme.colorScheme.primary)
-                            }
-                        }
-                    }
-                }
-            }
-            
             item {
-                Column(modifier = Modifier.padding(horizontal = 24.dp)) {
+                Column(modifier = Modifier.padding(horizontal = 24.dp).padding(top = 16.dp)) {
                     Text("শিক্ষক পোর্টাল", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface, lineHeight = 40.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Welcome back! Here's your tutoring overview.", fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
