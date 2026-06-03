@@ -40,7 +40,7 @@ fun DigitTabHeader(
     ) {
         Surface(
             shape = RoundedCornerShape(percent = 50),
-            color = pillBg,
+            color = pillBg.copy(alpha = 0.8f),
             shadowElevation = if (isDark) 0.dp else 4.dp,
             border = if (isDark) androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.05f)) else null,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
@@ -54,21 +54,21 @@ fun DigitTabHeader(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
                         modifier = Modifier
-                            .size(50.dp)
+                            .size(40.dp)
                             .clip(CircleShape)
-                            .background(if (isDark) Color.White.copy(alpha = 0.1f) else brandColor.copy(alpha = 0.1f)),
+                            .background(Color.Transparent),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_launcher_foreground),
                             contentDescription = "Digit Logo",
-                            modifier = Modifier.fillMaxSize(1.6f)
+                            modifier = Modifier.fillMaxSize(1.5f)
                         )
                     }
-                    Spacer(modifier = Modifier.width(12.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = "Digit",
-                        fontSize = 30.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Black,
                         color = brandColor,
                         fontFamily = FontFamily.SansSerif,
@@ -80,12 +80,12 @@ fun DigitTabHeader(
                     // Divider
                     Box(
                         modifier = Modifier
-                            .height(36.dp)
+                            .height(24.dp)
                             .width(1.dp)
                             .background(dividerColor)
                     )
                     
-                    Spacer(modifier = Modifier.width(20.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
                     
                     // Trailing section
                     actions()

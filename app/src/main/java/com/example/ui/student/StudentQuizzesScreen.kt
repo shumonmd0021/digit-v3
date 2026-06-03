@@ -54,24 +54,24 @@ fun StudentQuizzesScreen(
             DigitTabHeader(
                 actions = {
                     Box(contentAlignment = Alignment.TopEnd) {
-                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
-                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = NavyBlue, modifier = Modifier.size(32.dp))
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(40.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = NavyBlue, modifier = Modifier.size(24.dp))
                         }
                         Box(
                             modifier = Modifier
                                 .padding(top = 8.dp, end = 8.dp)
-                                .size(12.dp)
+                                .size(8.dp)
                                 .background(Color.Red, CircleShape)
                         )
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Surface(
-                        modifier = Modifier.size(50.dp),
+                        modifier = Modifier.size(40.dp),
                         shape = CircleShape,
                         color = NavyBlue,
                         border = androidx.compose.foundation.BorderStroke(2.dp, TealGreen.copy(alpha = 0.5f))
                     ) {
-                         Icon(Icons.Default.Person, contentDescription = "Avatar", tint = Color.White, modifier = Modifier.padding(10.dp))
+                         Icon(Icons.Default.Person, contentDescription = "Avatar", tint = Color.White, modifier = Modifier.padding(8.dp))
                     }
                 }
             )

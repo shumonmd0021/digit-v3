@@ -50,25 +50,25 @@ fun StudentLessonsScreen(
             DigitTabHeader(
                 actions = {
                     Box(contentAlignment = Alignment.TopEnd) {
-                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
-                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = LessonPrimaryText, modifier = Modifier.size(32.dp))
+                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(40.dp)) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "Notifications", tint = LessonPrimaryText, modifier = Modifier.size(24.dp))
                         }
                         Box(
                             modifier = Modifier
                                 .padding(top = 8.dp, end = 8.dp)
-                                .size(12.dp)
+                                .size(8.dp)
                                 .background(Color.Red, CircleShape)
                         )
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Surface(
-                        modifier = Modifier.size(50.dp),
+                        modifier = Modifier.size(40.dp),
                         shape = CircleShape,
                         color = LessonLavender,
                         border = androidx.compose.foundation.BorderStroke(2.dp, LessonTeal.copy(alpha = 0.5f))
                     ) {
                         Box(contentAlignment = Alignment.Center) {
-                            Text("AM", color = LessonBlueText, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                            Text("AM", color = LessonBlueText, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                         }
                     }
                 }
