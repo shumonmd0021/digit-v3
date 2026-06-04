@@ -63,7 +63,53 @@ class MainActivity : ComponentActivity() {
                             onNavigateToWhiteboard = { navController.navigate(Whiteboard) },
                             onNavigateToLessonUpload = { navController.navigate(LessonUpload) },
                             onNavigateToQuizCreator = { navController.navigate(QuizCreator) },
-                            onNavigateToAnnouncement = { navController.navigate(Announcement) }
+                            onNavigateToAnnouncement = { navController.navigate(Announcement) },
+                            onNavigateToProgress = { navController.navigate(TeacherProgress) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToLessons = { navController.navigate(TeacherLessons) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToQuizzes = { navController.navigate(TeacherQuizzes) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToAlerts = { navController.navigate(TeacherAlerts) },
+                            onNavigateToProfile = { navController.navigate(TeacherProfile) }
+                        )
+                    }
+                    composable<TeacherLessons> {
+                        com.example.ui.teacher.TeacherLessonsScreen(
+                            onNavigateToHome = { navController.navigate(TeacherDashboard) { popUpTo(TeacherDashboard) { inclusive = true } } },
+                            onNavigateToQuizzes = { navController.navigate(TeacherQuizzes) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToProgress = { navController.navigate(TeacherProgress) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToAlerts = { navController.navigate(TeacherAlerts) },
+                            onNavigateToProfile = { navController.navigate(TeacherProfile) }
+                        )
+                    }
+                    composable<TeacherQuizzes> {
+                        com.example.ui.teacher.TeacherQuizzesScreen(
+                            onNavigateToHome = { navController.navigate(TeacherDashboard) { popUpTo(TeacherDashboard) { inclusive = true } } },
+                            onNavigateToLessons = { navController.navigate(TeacherLessons) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToProgress = { navController.navigate(TeacherProgress) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToAlerts = { navController.navigate(TeacherAlerts) },
+                            onNavigateToProfile = { navController.navigate(TeacherProfile) }
+                        )
+                    }
+                    composable<TeacherProgress> {
+                        com.example.ui.teacher.TeacherProgressScreen(
+                            onNavigateToHome = { navController.navigate(TeacherDashboard) { popUpTo(TeacherDashboard) { inclusive = true } } },
+                            onNavigateToLessons = { navController.navigate(TeacherLessons) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToQuizzes = { navController.navigate(TeacherQuizzes) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToAlerts = { navController.navigate(TeacherAlerts) },
+                            onNavigateToProfile = { navController.navigate(TeacherProfile) }
+                        )
+                    }
+                    composable<TeacherAlerts> {
+                        com.example.ui.teacher.TeacherAlertsScreen(
+                            onNavigateToHome = { navController.navigate(TeacherDashboard) { popUpTo(TeacherDashboard) { inclusive = true } } },
+                            onNavigateToProgress = { navController.navigate(TeacherProgress) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToProfile = { navController.navigate(TeacherProfile) { popUpTo(TeacherDashboard) { inclusive = false } } }
+                        )
+                    }
+                    composable<TeacherProfile> {
+                        com.example.ui.teacher.TeacherProfileScreen(
+                            onNavigateToHome = { navController.navigate(TeacherDashboard) { popUpTo(TeacherDashboard) { inclusive = true } } },
+                            onNavigateToProgress = { navController.navigate(TeacherProgress) { popUpTo(TeacherDashboard) { inclusive = false } } },
+                            onNavigateToAlerts = { navController.navigate(TeacherAlerts) { popUpTo(TeacherDashboard) { inclusive = false } } }
                         )
                     }
                     composable<Whiteboard> {

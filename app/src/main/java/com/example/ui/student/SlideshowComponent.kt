@@ -32,12 +32,12 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DailyActivitySlideshow(onNavigateToLesson: () -> Unit) {
-    val pagerState = rememberPagerState(pageCount = { 5 })
+    val pagerState = rememberPagerState(pageCount = { 4 })
 
     LaunchedEffect(Unit) {
         while (true) {
             delay(5000)
-            val nextPage = (pagerState.currentPage + 1) % 5
+            val nextPage = (pagerState.currentPage + 1) % 4
             pagerState.animateScrollToPage(
                 page = nextPage,
                 animationSpec = tween(durationMillis = 800, easing = FastOutSlowInEasing)
@@ -65,10 +65,9 @@ fun DailyActivitySlideshow(onNavigateToLesson: () -> Unit) {
             ) {
                 when (page) {
                     0 -> DidYouKnowCard()
-                    1 -> FlashcardOfTheDay()
-                    2 -> DailyChallengeCard()
-                    3 -> WordOfTheDayCard()
-                    4 -> ReviewPreviousLessonCard(onNavigateToLesson)
+                    1 -> DailyChallengeCard()
+                    2 -> WordOfTheDayCard()
+                    3 -> ReviewPreviousLessonCard(onNavigateToLesson)
                 }
             }
         }
@@ -82,7 +81,7 @@ fun DailyActivitySlideshow(onNavigateToLesson: () -> Unit) {
                 .padding(bottom = 8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            repeat(5) { iteration ->
+            repeat(4) { iteration ->
                 val isSelected = pagerState.currentPage == iteration
                 val targetColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
                 val targetWidth = if (isSelected) 24.dp else 8.dp

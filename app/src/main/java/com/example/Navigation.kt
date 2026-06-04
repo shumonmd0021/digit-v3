@@ -12,6 +12,21 @@ object Whiteboard
 object TeacherDashboard
 
 @Serializable
+object TeacherProgress
+
+@Serializable
+object TeacherAlerts
+
+@Serializable
+object TeacherProfile
+
+@Serializable
+object TeacherLessons
+
+@Serializable
+object TeacherQuizzes
+
+@Serializable
 object StudentDashboard
 
 @Serializable
